@@ -1,0 +1,28 @@
+name: Migrate and (optionally) Build
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  migrate:
+    name: Apply migrations and seed
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install psql client
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client
+
+      - name: Run migrations
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          if [ -z "$DATABASE_URL" ]; then echo "DATABASE_URL secret is not set"; exit 1; fi
+          psql "$DATABASE_URL" -f deploy-ready/0000_large_slapstick.sql
+          psql "$DATABASE_URL" -f deploy-ready/seed.sql
+
+  # Optional: you can add a build/deploy job here that builds the backend and deploys it to your provider.
