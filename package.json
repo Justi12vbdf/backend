@@ -1,0 +1,19 @@
+{
+  "name": "bhp-backend",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "build": "esbuild src/index.ts --platform=node --bundle --format=esm --outdir=dist",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "pg": "^8.16.3",
+    "drizzle-orm": "^0.44.7",
+    "dotenv": "^16.0.0",
+    "multer": "^2.0.2"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.12"
+  }
+}
