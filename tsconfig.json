@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "outDir": "../../dist/backend",
+    "rootDir": "./src",
+    "baseUrl": "../../",
+    "ignoreDeprecations": "6.0",
+    "module": "ESNext",
+    "target": "ESNext",
+    "strict": true,
+    "lib": ["esnext"],
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "types": ["node"],
+    "paths": {
+      "@shared/*": ["packages/shared/*"],
+      "@database/*": ["packages/database/*"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"],
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  }
+}
